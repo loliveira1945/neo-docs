@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manual de Implantação</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin: 40px;
+      }
+
+      header {
+        text-align: center;
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      section {
+        margin-bottom: 20px;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      strong {
+        color: #222;
+      }
+
+      footer {
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>{{clientName}} / SDP-{{cardNumber}} / Manual de Implantação</h1>
+      <p>Gerado automaticamente pelo sistema</p>
+    </header>
+
+    <section>
+      <h2>Informações sobre o projeto</h2>
+      <p>
+        A <strong>NEO</strong> desenvolveu uma central de atendimento exclusiva para suas necessidades. 
+        A mesma passou pelo nosso controle de qualidade e encontra-se em pleno funcionamento 
+        nas versões atuais dos principais navegadores (Chrome, Mozilla, Safari, Edge e Opera) 
+        e dispositivos móveis (Android e IOS).
+      </p>
+      <br />
+      <p>
+        No quadro abaixo existem informações para que possa identificá-la. Sua central de atendimento 
+        será carregada normalmente em seu ambiente, entretanto poderá acessá-la diretamente de nossos 
+        servidores com o(s) endereço(s) abaixo:
+      </p>
+      <table border="1">
+        <tr>
+          <th>{{clientName}}</th>
+          <th>{{cardNumber}}</th>
+        </tr>
+        {{#each central}}
+          <tr>
+            <td>{{typeCentral}}</td>
+            <td>{{url}}</td>
+          </tr>
+        {{/each}}
+      </table>
+    </section>
+
+    <section>
+      <h2>Configurações</h2>
+      <ul>
+        <li>Modo de teste: {{#if testMode}}Sim{{else}}Não{{/if}}</li>
+        <li>Action URL: {{#if actionUrl}}Sim{{else}}Não{{/if}}</li>
+        <li>Integração: {{#if integration}}Sim{{else}}Não{{/if}}</li>
+        <li>Token JWT: {{#if tokenJWT}}Sim{{else}}Não{{/if}}</li>
+        <li>Envio de token: {{#if sendToken}}Sim{{else}}Não{{/if}}</li>
+        <li>Implantação WebView: {{#if implantationWebView}}Sim{{else}}Não{{/if}}</li>
+        <li>Implantação Script: {{#if implantationScript}}Sim{{else}}Não{{/if}}</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Documento gerado em {{date}}</p>
+    </footer>
+  </body>
+</html>
