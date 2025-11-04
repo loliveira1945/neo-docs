@@ -24,6 +24,7 @@
     "@types/handlebars": "^4.1.0",
     "@types/puppeteer": "^7.0.4",
     "@types/typescript": "^2.0.0",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
   }
 }
