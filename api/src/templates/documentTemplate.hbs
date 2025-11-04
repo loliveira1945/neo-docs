@@ -8,7 +8,8 @@
       body {
         font-family: Arial, sans-serif;
         color: #333;
-        margin: 40px;
+        margin: 60px;
+        background-color: #fdfdfd;
       }
 
       header {
@@ -19,6 +20,10 @@
       }
 
       section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         margin-bottom: 20px;
       }
 
@@ -28,6 +33,51 @@
 
       strong {
         color: #222;
+      }
+
+      table {
+        border-collapse: separate;
+        width: 100%;
+        border-spacing: 0;
+        border: 3px solid #7747FF;
+        border-radius: 7px;
+        overflow: hidden;
+      }
+
+      th,
+      td {
+        padding: 8px;
+        border: 1px solid #7747FF;
+      }
+
+      pre {
+        background-color: #2e2e2e;
+        color: #2e2e;
+        width: 100%;
+        padding: 0 40px 0 0;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        background-color: #7747FF;
+        padding: 20px;
+        width: 100%;
+        height: 50px;
+        border-radius: 7px;
+        color: #fff;
+        font-size: larger;
+        font-weight: 700;
+      }
+
+      div a {
+        width: 100%;
+        text-decoration: none;
+        color: #fff;
+        font-size: larger;
+        font-weight: 700;
       }
 
       footer {
@@ -42,50 +92,502 @@
 
   <body>
     <header>
+      <img src="https://neoassist.com/wp-content/themes/neo/assets/brand/logo-footer-black.svg" height="100" width="200" />
       <h1>{{clientName}} / SDP-{{cardNumber}} / Manual de Implantação</h1>
-      <p>Gerado automaticamente pelo sistema</p>
     </header>
 
-    <section>
-      <h2>Informações sobre o projeto</h2>
-      <p>
-        A <strong>NEO</strong> desenvolveu uma central de atendimento exclusiva para suas necessidades. 
-        A mesma passou pelo nosso controle de qualidade e encontra-se em pleno funcionamento 
-        nas versões atuais dos principais navegadores (Chrome, Mozilla, Safari, Edge e Opera) 
-        e dispositivos móveis (Android e IOS).
-      </p>
-      <br />
-      <p>
-        No quadro abaixo existem informações para que possa identificá-la. Sua central de atendimento 
-        será carregada normalmente em seu ambiente, entretanto poderá acessá-la diretamente de nossos 
-        servidores com o(s) endereço(s) abaixo:
-      </p>
-      <table border="1">
-        <tr>
-          <th>{{clientName}}</th>
-          <th>{{cardNumber}}</th>
-        </tr>
-        {{#each central}}
-          <tr>
-            <td>{{typeCentral}}</td>
-            <td>{{url}}</td>
-          </tr>
-        {{/each}}
-      </table>
-    </section>
+    <main>
+      <!-- PARTE 1 -->
+      <section>
+        <h1>Informações sobre o projeto</h1>
+        <p>
+          A <strong>NEO</strong> desenvolveu uma central de atendimento exclusiva para suas necessidades.
+          A mesma passou pelo nosso controle de qualidade e encontra-se em pleno funcionamento
+          nas versões atuais dos principais navegadores (Chrome, Mozilla, Safari, Edge e Opera)
+          e dispositivos móveis (Android e IOS).
+        </p>
 
-    <section>
-      <h2>Configurações</h2>
-      <ul>
-        <li>Modo de teste: {{#if testMode}}Sim{{else}}Não{{/if}}</li>
-        <li>Action URL: {{#if actionUrl}}Sim{{else}}Não{{/if}}</li>
-        <li>Integração: {{#if integration}}Sim{{else}}Não{{/if}}</li>
-        <li>Token JWT: {{#if tokenJWT}}Sim{{else}}Não{{/if}}</li>
-        <li>Envio de token: {{#if sendToken}}Sim{{else}}Não{{/if}}</li>
-        <li>Implantação WebView: {{#if implantationWebView}}Sim{{else}}Não{{/if}}</li>
-        <li>Implantação Script: {{#if implantationScript}}Sim{{else}}Não{{/if}}</li>
-      </ul>
-    </section>
+        <p>
+          No quadro abaixo existem informações para que possa identificá-la. Sua central de atendimento
+          será carregada normalmente em seu ambiente, entretanto poderá acessá-la diretamente de nossos
+          servidores com o(s) endereço(s) abaixo:
+        </p>
+
+        <table>
+          <tr>
+            <th>{{clientName}}</th>
+            <th>{{cardNumber}}</th>
+          </tr>
+          <tr>
+            {{#each central}}
+              <tr>
+                <td>{{typeCentral}}</td>
+                <td>
+                  <a href="{{url}}" target="_blank">
+                    {{url}}
+                  </a>
+                </td>
+              </tr>
+            {{/each}}
+          </tr>
+        </table>
+      </section>
+
+      <!-- MODO TESTE -->
+      {{#if testMode}}
+        <!-- PARTE 2 -->
+        <section>
+          <h1>Informações técnicas</h1>
+          <!-- PARTE 2.1 -->
+          
+            <section>
+              <h2>Como visualizar a central no modo Teste</h2>
+              <p>
+                Caso tenha solicitado alterações na sua central de atendimento sem que ela seja atualizada no ambiente de produção,
+                você poderá visualizar as alterações acessando a central em modo teste. (O exemplo a seguir foi feito no navegador
+                Google Chrome).
+              </p>
+
+              <p>
+                Abra o link da sua central de atendimento e abra a ferramenta de desenvolvedor apertando a tecla F12 ou clique com o
+                botão direito do mouse em qualquer parte da central e selecione a opção “Inspecionar”.
+              </p>
+
+              <img
+                src="https://www.ufes.br/sites/default/files/field/image/noticia-falsificada-86251077.jpg"
+                alt="Teste texto"
+                height="250"
+                width="250"
+              />
+
+              <p>Certifique-se de que está com a opção “top” selecionada como no exemplo a seguir:</p>
+              <p>Selecione a aba “Console”, copie código abaixo e cole no console como mostra a imagem, em seguida pressione a tecla “Enter”.</p>
+
+              <pre>
+                <code class="language-js">
+                  NeoAssistTag.sdk.widgets[0].api.setTestMode(true);
+                </code>
+              </pre>
+
+              <img
+                src="https://www.ufes.br/sites/default/files/field/image/noticia-falsificada-86251077.jpg"
+                alt="Teste texto"
+                height="250"
+                width="250"
+              />
+
+              <p>
+                Para retornar ao modo de produção, repita o procedimento anterior utilizando o código abaixo ou aguarde
+                <strong>aproximadamente uma hora</strong>.
+              </p>
+
+              <pre>
+                <code class="language-js">
+                  NeoAssistTag.sdk.widgets[0].api.setTestMode(true);
+                </code>
+              </pre>
+
+              <p>
+                <strong>Obs:</strong> As versões mais atuais do Google Chrome necessitam de permissão para que o código seja colado no
+                console. Para essa prática, por favor siga os passos solicitados na mensagem do console para prosseguir com a colagem do
+                script em MODO TESTE:
+              </p>
+
+              <img
+                src="https://www.ufes.br/sites/default/files/field/image/noticia-falsificada-86251077.jpg"
+                alt="Teste texto"
+                height="250"
+                width="250"
+              />
+            </section>
+          
+        </section>
+      {{/if}}
+
+      <!-- LINK DE AÇÃO -->
+      {{#if actionUrl}}
+        <!-- PARTE 3 -->
+        <section>
+          <h2>Como Inserir Links de ação dentro do seu ambiente</h2>
+          <p>
+            Caso seja necessário é possível inserir links de ações da nossa central dentro do seu ambiente, os links abaixo podem ser
+            inseridos diretamente dentro do seu HTML.
+          </p>
+
+          <!-- PARTE 3.1 -->
+          <section>
+            <h3>Link para abrir <strong>Central Flutuante</strong> em determinado Módulo</h3>
+
+            <!-- PARTE 3.1.1 -->
+            <section>
+              <!-- PARTE 3.1.1.1 -->
+              <section>
+                <h3>AI (FAQ)</h3>
+                <pre>
+                  <code class="language-js">
+                    &lt;a href="#" onclick="NeoAssistTag.sdk.widgets[0].api.changeRoute('/ai')"&gt;Abrir&lt;/a&gt;
+                  </code>
+                </pre>
+              </section>
+              <!-- PARTE 3.1.1.2 -->
+              <section>
+                <h3>Email</h3>
+                <pre>
+                  <code class="language-js">
+                    &lt;a href="#" onclick="NeoAssistTag.sdk.widgets[0].api.changeRoute('/email')"&gt;Abrir&lt;/a&gt;
+                  </code>
+                </pre>
+              </section>
+              <!-- PARTE 3.1.1.3 -->
+              <section>
+                <h3>Chat</h3>
+                <pre>
+                  <code class="language-js">
+                    &lt;a href="#" onclick="NeoAssistTag.sdk.widgets[0].api.changeRoute('/chat')"&gt;Abrir&lt;/a&gt;
+                  </code>
+                </pre>
+              </section>
+              <!-- PARTE 3.1.1.4 -->
+              <section>
+                <h3>Telefone</h3>
+                <pre>
+                  <code class="language-js">
+                    &lt;a href="#" onclick="NeoAssistTag.sdk.widgets[0].api.changeRoute('/telefone')"&gt;Abrir&lt;/a&gt;
+                  </code>
+                </pre>
+              </section>
+              <!-- PARTE 3.1.1.5 -->
+              <section>
+                <h3>Link para abrir Chat Pop Up</h3>
+                <pre>
+                  <code class="language-js">
+                    &lt;a href="javascript:void(0);" 
+                    onclick="window.open('https://cdn.atendimen.to/widget/1da64b93c2b758f917e634ba1d7d94c5/current#/chat?onlyChat=1',
+                    '', 'Location=NO, status=no, scrollbars=no, width=430, height=550, resizable=no, 
+                    scrollbars=no, Titlebar=no, maximized=no');"&gt;Abrir&lt;/a&gt;
+                  </code>
+                </pre>
+              </section>
+            </section>
+          </section>
+        </section>
+
+        <!-- PARTE 4 -->
+        <section>
+          <h2>Links de ação para a Central Fixa</h2>
+          <p>
+            Para abrir os links de ação do Atendimento Inteligente na Central Fixa, é necessário estar na página onde a central é carregada,
+            caso contrário o script não funcionará.
+          </p>
+          <!-- PARTE 4.1 -->
+          <section>
+            <h3>Dentro da página onde a central está publicada</h3>
+            <p>
+              Se o link de ação já estiver na mesma página que a central, o script poderá ser executado no “onclick” de um elemento, como no exemplo abaixo:
+            </p>
+
+            <pre>
+              <code class="language-js">
+                &lt;a href="#" onclick="NeoAssistTag.sdk.widgets[0].api.sendMessage('eaction:set-category:430970')"&gt;Abrir Link&lt;/a&gt;
+              </code>
+            </pre>
+          </section>
+
+          <!-- PARTE 4.1 -->
+          <section>
+            <h3>Fora da página onde a central está publicada</h3>
+            <p>
+              Se o link de ação estiver em outra página que não àquela onde a central fixa esteja publicada, é necessário fazer um
+              redirecionamento para a URL correta para só então rodar o script.
+            </p>
+
+            <p>
+              Neste caso, recomendamos que seja feito um controle interno* de qual categoria foi selecionada, para que posteriormente o
+              script correto seja carregado quando a central estiver em tela.
+            </p>
+
+            <p>
+              * A forma como será feito este controle interno pode variar muito de acordo com a tecnologia utilizada em seu site e a lógica de seu código.
+            </p>
+          </section>
+        </section>
+
+        <!-- PARTE 5 -->
+        <section>
+          <h2>Scripts</h2>
+
+          <!-- PARTE 5.1 -->
+          <section>
+            <h3>Categoria</h3>
+            <pre>
+              <code class="language-js">
+                NeoAssistTag.sdk.widgets[0].api.sendMessage('eaction:set-category:430970');
+              </code>
+            </pre>
+          </section>
+        </section>
+
+        <!-- PARTE 6 -->
+        <section>
+          <h2>Links de ação dentro das perguntas no AI</h2>
+          <p>
+            Para inserir um link de ação dentro de uma pergunta do AI, acesse o painel administrativo e vá até a área do Atendimento Inteligente. Edite a
+            pergunta normalmente. Quando desejar inserir o link de ação, troque o modo de edição para Código fonte, como demonstrado na imagem a seguir.
+          </p>
+
+          <!-- PARTE 6.1 -->
+          <section>
+            <img
+              src="https://www.ufes.br/sites/default/files/field/image/noticia-falsificada-86251077.jpg"
+              alt="Teste texto"
+              height="250"
+              width="250"
+            />
+
+            <p>Copie e cole no editor o texto correspondente ao link correto e salve sua alteração.</p>
+
+            <img
+              src="https://www.ufes.br/sites/default/files/field/image/noticia-falsificada-86251077.jpg"
+              alt="Teste texto"
+              height="250"
+              width="250"
+            />
+
+            <p>Altere apenas o campo Texto para mostrar. Salve e continue a edição da pergunta normalmente.</p>
+
+            <img
+              src="https://www.ufes.br/sites/default/files/field/image/noticia-falsificada-86251077.jpg"
+              alt="Teste texto"
+              height="250"
+              width="250"
+            />
+
+            <p>Link para abrir Pergunta dentro de outra pergunta do AI</p>
+          </section>
+
+          <!-- PARTE 6.2 -->
+          <section>
+            <h3>Pergunta</h3>
+            <pre>
+              <code class="language-js">
+                &lt;a href="#" onclick="iFrameResizer.onMessage('eaction:open-question:398197084')"&gt;Abrir&lt;/a&gt;
+              </code>
+            </pre>
+          </section>
+        </section>
+      {{/if}}
+
+      <!-- INTEGRAÇÃO -->
+      {{#if integration}}
+        <!-- PARTE 7 -->
+        <section>
+          <h2>Como habilitar uma Integração dentro do seu ambiente</h2>
+          <p>
+            Sua central conta com uma integração na área logada, que pode ser realizada via Variável Global. Se as informações não forem
+            passadas por variável, os campos virão em branco para o usuário preencher. As variáveis globais devem obrigatoriamente ter os
+            nomes “neoNome”, “neoMail” e ”neoEmpresa”, caso contrário ocorrerá a leitura incorreta.
+          </p>
+
+          <!-- PARTE 7.1 -->
+          <section>
+            <h3>Exemplo variável global</h3>
+            <pre>
+              <code class="language-js">
+                var neoNome = 'João da Silva';
+                var neoMail = 'joaodasilva@gmail.com';
+                var neoEmpresa = 'Empresa Teste';
+              </code>
+            </pre>
+          </section>
+          
+          <!-- PARTE 7.2 -->
+          <section>
+            <h3>Script de Implantação para área com integração</h3>
+            <p>
+              Para que a integração funcione corretamente, é necessário que o script de implantação da área logada seja diferente do script
+              utilizado no restante do site. As instruções para inserção do script são as mesmas do link ao fim deste manual, porém o código
+              a ser utilizado deve ser como descrito abaixo.
+            </p>
+
+            <pre>
+              <code class="language-js">
+                &lt;script defer type="text/javascript"&gt;
+                  (function() {
+                    window.NeoAssistTag = {};
+                    NeoAssistTag.querystring = true;
+                    NeoAssistTag.pageid = '';
+                    NeoAssistTag.clientdomain = 'cliente.neoassist.com';
+                    NeoAssistTag.initialize = {
+                      fields: {
+                        name: (typeof neoNome != 'undefined') ? neoNome : '',
+                        email: (typeof neoMail != 'undefined') ? neoMail : '',
+                        ProtocoloFieldA: (typeof neoEmpresa != 'undefined') ? neoEmpresa : ''
+                      }
+                    };
+                    var na = document.createElement('script');
+                    na.type = 'text/javascript';
+                    na.async = true;
+                    na.src = 'https://cdn.atendimen.to/n.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(na, s);
+                  })();
+                &lt;/script&gt;
+              </code>
+            </pre>
+          </section>
+        </section>
+      {{/if}}
+
+      <!-- HISTÓRICO DO CHAMADO -->
+      {{#if callHistory}}
+        <!-- PARTE 8 -->
+        <section>
+          <h2>Integração de Histórico de chamados</h2>
+          <p>
+            Sua central possui o módulo de histórico de chamados com integração da autenticação de usuário. Para que esta integração
+            funcione corretamente, é necessário seguir alguns passos.
+          </p>
+
+          <!-- PARTE 8.1 -->
+          <section>
+            <h3>Gerar Token JWT</h3>
+            <p>
+              Para realizar a autenticação, precisaremos que você nos envie um Token JWT gerado com as informações do usuário a ser
+              autenticado e uma chave de assinatura para que possamos verificar a autenticidade do Token.
+            </p>
+
+            <p>
+              Neste token você pode enviar vários campos, conforme a lista abaixo, porém é obrigatório o envio dos campos Name e EMail.
+              Sem eles não é possível realizar a autenticação.
+            </p>
+
+            <p>
+              A ferramenta utilizada para gerar o Token JWT fica a critério de escolha do desenvolvedor responsável,
+              sendo importante para nós apenas o resultado final.
+            </p>
+
+            <table>
+              <tr>
+                <th>Nome do campo</th>
+                <th>Tipo de dado</th>
+                <th>Exemplo</th>
+              </tr>
+              <tr>
+                <th>Name</th>
+                <th>Texto curto</th>
+                <th>José</th>
+              </tr>
+              <tr>
+                <th>EMail</th>
+                <th>E-mail</th>
+                <th>jose@email.com</th>
+              </tr>
+              <tr>
+                <th>FieldA</th>
+                <th>Telefone</th>
+                <th>(11) 99999-9999</th>
+              </tr>
+              <tr>
+                <th>FieldU</th>
+                <th>CPF</th>
+                <th>000.000.001-91</th>
+              </tr>
+            </table>
+          </section>
+
+          <!-- PARTE 8.2 -->
+          <section>
+            <h2>Chave de assinatura</h2>
+            <div>70c0f8e8e2d0ee667b4aa905db1ae2fa</div>
+          </section>
+          
+          <!-- PARTE 8.3 -->
+          <section>
+            <h2>Envio do token para a Central de Atendimento</h2>
+            <p>
+              O envio do token deve ser realizado via Variável Global. Se o token não for enviado, ou não for válido, não será possível
+              autenticar o usuário. A variável global deve obrigatoriamente ter o nome “neoToken”, caso contrário ocorrerá a leitura incorreta.
+            </p>
+          </section>
+
+          <!-- PARTE 8.4 -->
+          <section>
+            <h2>Exemplo variável global</h2>
+            <pre>
+              <code class="language-js">
+                var neoToken =
+                'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NDI2MT
+                c1NjgsImV4cCI6MTY3NDE1MzU2OCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlL
+                mNvbSIsIk5hbWUiOiJUZXN0ZSIsIkVNYWlsIjoidGVzdGVAdGVzdGUuY29tIn0.CxB4xTEwGVXt4fWY4eoLcjA-QP
+                CaIwqxl3Re9fw7g9I';
+              </code>
+            </pre>
+          </section>
+
+          <!-- PARTE 8.5 -->
+          <section>
+            <h2>Script de Implantação personalizado</h2>
+            <p>
+              Para que o envio da informação funcione corretamente, é necessário que o script de implantação seja um pouco diferente do padrão.
+              As instruções para inserção do script são as mesmas do link ao fim deste manual, porém o código a ser utilizado deve ser como descrito abaixo.
+            </p>
+
+              <pre>
+                <code class="language-js">
+                  &lt;script defer type="text/javascript"&gt;
+                    (function() {
+                      window.NeoAssistTag = {};
+                      NeoAssistTag.querystring = true;
+                      NeoAssistTag.pageid = '';
+                      NeoAssistTag.clientdomain = 'cliente.neoassist.com';
+                      NeoAssistTag.initialize = {
+                        fields: {
+                          authToken: (typeof neoToken != 'undefined') ? neoToken : ''
+                        }
+                      };
+                      var na = document.createElement('script');
+                      na.type = 'text/javascript';
+                      na.async = true;
+                      na.src = 'https://cdn.atendimen.to/n.js';
+                      var s = document.getElementsByTagName('script')[0];
+                      s.parentNode.insertBefore(na, s);
+                    })();
+                  &lt;/script&gt;
+                </code>
+              </pre>
+          </section>
+        </section>
+      {{/if}}
+
+      <!-- SCRIPT DE IMPLANTAÇÃO -->
+      {{#if implantationScript}}
+        <!-- PARTE 9 -->
+        <section>
+          <h1>Implantação da Central NEO</h1>
+          <p>
+            Para visualizar as instruções de como implantar o script da nossa central, basta clicar no botão abaixo.
+          </p>
+          <div>
+            <a href="{{clientUrl}}" target="_blank" rel="noopener noreferrer">
+              Script de Implantação
+            </a>
+          </div>
+        </section>
+      {{/if}}
+
+      <!-- IMPLANTAÇÃO WEB VIEW -->
+      {{#if implantationWebView}}
+      <!-- PARTE 10 -->
+        <section>
+          <h2>
+            Script de implantação para apps
+          </h2>
+          <p>
+            Texto teste para depois implementar a nova atualização do web view
+          </p>
+        </section>
+      {{/if}}
+    </main>
 
     <footer>
       <p>Documento gerado em {{date}}</p>

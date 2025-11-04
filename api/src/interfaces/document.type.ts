@@ -1,5 +1,6 @@
 export interface DocumentRequest {
   clientName: string;
+  clientUrl: string;
   cardNumber: string;
   central: Array<{
     typeCentral: string;
@@ -8,8 +9,7 @@ export interface DocumentRequest {
   testMode: boolean;
   actionUrl: boolean;
   integration: boolean;
-  tokenJWT: boolean;
-  sendToken: boolean;
+  callHistory: boolean;
   implantationWebView: boolean;
   implantationScript: boolean;
 }
