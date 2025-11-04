@@ -10,6 +10,9 @@ import { extractClientSlug } from "../../utils/extractClientSlug";
 class CreateDocumentService {
   async execute(data: DocumentRequest) {
     try {
+      // 1. Extrai o nome do cliente a partir da URL
+        // Exemplo: "https://comercial.neoassist.com" -> "comercial"
+        // Esse nome será usado para montar o link do manual
       const clientSlug = data.central.length > 0
         ? extractClientSlug(data.central[0].url)
         : null;
@@ -23,10 +26,13 @@ class CreateDocumentService {
         "templates",
         "documentTemplate.hbs"
       );
+
       // 3. Lê o arquivo do template
       const templateFile = fs.readFileSync(templatePath, "utf-8");
+
       // 4. Compila com Handlebars
       const template = Handlebars.compile(templateFile);
+
       // 5. Gera o HTML final com os dados + data atual
       const html = template({ 
         ...data, 
@@ -34,9 +40,10 @@ class CreateDocumentService {
         date: new Date().toLocaleDateString("pt-BR") 
       });
       console.log("📌 URL AQUI:", clientUrl);
+
       // 6. Salva o HTML gerado em um arquivo temporário
-      const outputPath = path.resolve(__dirname, "..", "..", "test2_document.html");
-      fs.writeFileSync(outputPath, html);
+      // const outputPath = path.resolve(__dirname, "..", "..", "test2_document.html");
+      // fs.writeFileSync(outputPath, html);
       // console.log("📌 HTML salvo em:", outputPath);
 
       // 7. Inicia Puppeteer (headless)
@@ -56,8 +63,8 @@ class CreateDocumentService {
       await browser.close();
 
       // 10. Salva o PDF localmente
-      const pdfPath = path.resolve(__dirname, "..", "..", "test_document.pdf");
-      fs.writeFileSync(pdfPath, pdfBuffer);
+      // const pdfPath = path.resolve(__dirname, "..", "..", "test_document.pdf");
+      // fs.writeFileSync(pdfPath, pdfBuffer);
       // console.log("📄 PDF salvo em:", pdfPath);
 
       // 11. Retorna Buffer (pode ser usado para download ou base64 para preview)
