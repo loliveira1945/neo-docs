@@ -6,7 +6,6 @@ import { router } from "./routes";
 const app = express();
 app.use(express.json());
 app.use(cors());
-
 app.use(router);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
@@ -16,6 +15,10 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 });
 
 // Sobe o servidor
-app.listen(process.env.PORT || 3333, () => {
-  console.log('SERVER ONLINE!!')
-});
+if (process.env.VERCEL) {
+  module.exports = app;
+} else {
+  app.listen(process.env.PORT || 3333, () => {
+    console.log("SERVER ONLINE!!");
+  });
+}
