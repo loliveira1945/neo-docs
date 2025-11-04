@@ -14,9 +14,12 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   return res.status(500).json({ status: "error", message: "Internal server error." })
 });
 
+// Exporta para o Vercel como handler explícito
+const handler = (req: Request, res: Response) => app(req, res);
+
 // Exporta para o Vercel
-module.exports = app;
-exports.default = app;
+module.exports = handler;
+exports.default = handler;
 
 // Só sobe servidor localmente
 if (!process.env.VERCEL) {
