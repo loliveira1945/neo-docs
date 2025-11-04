@@ -16,6 +16,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 // Exporta para o Vercel
 module.exports = app;
+exports.default = app;
 
 // Só sobe servidor localmente
 if (!process.env.VERCEL) {
