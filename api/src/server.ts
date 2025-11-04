@@ -14,10 +14,11 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   return res.status(500).json({ status: "error", message: "Internal server error." })
 });
 
-// Sobe o servidor
-if (process.env.VERCEL) {
-  module.exports = app;
-} else {
+// Exporta para o Vercel
+module.exports = app;
+
+// Só sobe servidor localmente
+if (!process.env.VERCEL) {
   app.listen(process.env.PORT || 3333, () => {
     console.log("SERVER ONLINE!!");
   });
